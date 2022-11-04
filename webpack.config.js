@@ -17,7 +17,7 @@ limitations under the License.
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -32,15 +32,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/, 
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({filename: "[name].css", allChunks: true}),
+    new MiniCssExtractPlugin({filename: "[name].css", allChunks: true}),
     new HtmlWebpackPlugin({template: "./src/index.html"})
   ]
 }
