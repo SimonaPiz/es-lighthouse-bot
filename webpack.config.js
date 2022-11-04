@@ -37,7 +37,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({filename: "[name].css", allChunks: true}),
+    new MiniCssExtractPlugin({filename: "[name].css", chunkFilename: "[id].css"}),
     new HtmlWebpackPlugin({template: "./src/index.html"})
   ]
 }
